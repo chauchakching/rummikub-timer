@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ClockIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { useTransition, animated, config, useSpring } from 'react-spring';
 
 interface AppProps {}
 
@@ -19,7 +20,15 @@ function App({}: AppProps) {
     return () => clearTimeout(timer);
   }, [count, setCount]);
 
+  const [styles, api] = useSpring(() => ({}));
+
   const onClick = () => {
+    if (count !== 0) {
+      api.start({
+        from: { backgroundColor: '#FEF3C7' },
+        to: { backgroundColor: 'white' },
+      });
+    }
     setCount(timeLimit);
   };
 
@@ -66,22 +75,30 @@ function App({}: AppProps) {
         />
       </div>
 
-      <div
-        className={classnames([
-          'w-full',
-          'font-mono',
-          'flex',
-          'justify-center',
-          'items-center',
-          'h-full',
-          ['bg-red-600', count === 0],
-        ])}
+      <animated.div
+          className={classnames([
+            'w-full',
+            'h-full',
+          ])}
         onClick={onClick}
+        style={styles}
       >
-        <div id="count" className={classnames([['text-white', count === 0]])}>
-          {count}
+        <div
+          className={classnames([
+            'w-full',
+            'font-mono',
+            'flex',
+            'justify-center',
+            'items-center',
+            'h-full',
+            ['bg-red-600', count === 0],
+          ])}
+        >
+          <div id="count" className={classnames([['text-white', count === 0]])}>
+            {count}
+          </div>
         </div>
-      </div>
+      </animated.div>
     </div>
   );
 }

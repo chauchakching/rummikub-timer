@@ -1,4 +1,6 @@
-# New Project
+# rummikub-timer
+
+A countdown timer for Rummikub. Clicking on the screen will reset the timer.
 
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 

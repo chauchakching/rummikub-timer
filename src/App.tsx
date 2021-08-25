@@ -1,41 +1,101 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ClockIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 
 interface AppProps {}
 
+const defaultTimeLimit = 60;
+const timeLimitInterval = 15;
+const maxTimeLimit = 180;
+
 function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
+  const [timeLimit, setTimeLimit] = useState(defaultTimeLimit);
+  const [count, setCount] = useState(timeLimit);
+
   useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
+    const timer = setTimeout(() => {
+      if (count <= 0) return;
+      setCount(count - 1);
+    }, 1000);
     return () => clearTimeout(timer);
   }, [count, setCount]);
-  // Return the App component.
+
+  const onClick = () => {
+    setCount(timeLimit);
+  };
+
+  const addTimeLimit = () => {
+    setTimeLimit(Math.min(timeLimit + timeLimitInterval, maxTimeLimit));
+  };
+
+  const reduceTimeLimit = () => {
+    setTimeLimit(Math.max(timeLimit - timeLimitInterval, 15));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+    <div
+      className={classnames([
+        'font-mono',
+        'flex',
+        'flex-col',
+        'justify-center',
+        'items-center',
+        'h-full',
+      ])}
+    >
+      <div
+        className={classnames([
+          'h-14',
+          'w-full',
+          'bg-white',
+          'flex',
+          'justify-between',
+          'items-center',
+        ])}
+      >
+        <MinusIcon
+          className={classnames(['w-4', 'm-4'])}
+          onClick={reduceTimeLimit}
+        />
+        <div className={classnames(['flex', 'justify-center', 'items-center'])}>
+          <ClockIcon className={classnames(['w-5', 'm-1', 'text-gray-400'])} />
+          <span className={classnames(['text-lg'])}>{timeLimit}</span>
+        </div>
+        <PlusIcon
+          className={classnames(['w-4', 'm-4'])}
+          onClick={addTimeLimit}
+        />
+      </div>
+
+      <div
+        className={classnames([
+          'w-full',
+          'font-mono',
+          'flex',
+          'justify-center',
+          'items-center',
+          'h-full',
+          ['bg-red-600', count === 0],
+        ])}
+        onClick={onClick}
+      >
+        <div id="count" className={classnames([['text-white', count === 0]])}>
+          {count}
+        </div>
+      </div>
     </div>
   );
 }
+
+const classnames = (pairs: (string | [string, boolean?])[]) =>
+  pairs
+    .map((stringOrPair) =>
+      typeof stringOrPair === 'string'
+        ? stringOrPair
+        : stringOrPair[1]
+        ? stringOrPair[0]
+        : '',
+    )
+    .filter(Boolean)
+    .join(' ');
 
 export default App;

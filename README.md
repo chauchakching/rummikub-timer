@@ -2,6 +2,8 @@
 
 A countdown timer for Rummikub. Clicking on the screen will reset the timer.
 
+https://rummikub-timer.pages.dev/
+
 > ✨ Bootstrapped with Create Snowpack App (CSA).
 
 ## Available Scripts

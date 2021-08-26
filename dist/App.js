@@ -5,7 +5,7 @@ import GithubImgSrc from "../GitHub-Mark-64px.png.proxy.js";
 const defaultTimeLimit = 60;
 const timeLimitInterval = 15;
 const maxTimeLimit = 180;
-function App({}) {
+function App() {
   const [timeLimit, setTimeLimit] = useState(defaultTimeLimit);
   const [count, setCount] = useState(timeLimit);
   useEffect(() => {
@@ -69,7 +69,7 @@ function App({}) {
   }, /* @__PURE__ */ React.createElement("img", {
     src: GithubImgSrc,
     alt: "github",
-    className: classnames(["w-10", "text-gray-400", "opacity-10	"])
+    className: classnames(["w-10", "text-gray-400", "opacity-10"])
   }))));
 }
 const TopBar = ({

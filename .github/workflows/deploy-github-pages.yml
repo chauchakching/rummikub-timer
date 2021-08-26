@@ -18,9 +18,16 @@ jobs:
         with:
           elm-version: 0.19.1
           
-      - name: Install and Build
+      - name: Install
         run: |
           yarn install
+          
+      - name: Test
+        run: |
+          yarn test
+
+      - name: Build
+        run: |
           yarn build
 
       - name: Deploy to GitHub Pages

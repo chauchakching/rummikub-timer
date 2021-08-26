@@ -5,8 +5,8 @@ import App from './App';
 
 describe('<App>', () => {
   it('renders learn react link', () => {
-    const { getByText } = render(<App />);
-    const linkElement = getByText(/learn react/i);
-    expect(document.body.contains(linkElement));
-  });
-});
+    const { queryAllByText } = render(<App />);
+    const linkElements = queryAllByText(/60/i);
+    expect(linkElements.length).to.equal(2)
+  })
+})

@@ -13,4 +13,9 @@ parserOptions:
 plugins:
   - react
   - '@typescript-eslint'
-rules: {}
+  - unused-imports
+rules: {
+  "no-use-before-define": "off",
+  "no-unused-vars": "off",
+  "unused-imports/no-unused-imports": "error"
+}

@@ -1,45 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { ClockIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
-import { useTransition, animated, config, useSpring } from 'react-spring';
-import GithubImgSrc from '../public/GitHub-Mark-64px.png';
+import React, { useState, useEffect } from 'react'
+import { ClockIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline'
+import { animated, useSpring } from 'react-spring'
+import GithubImgSrc from '../public/GitHub-Mark-64px.png'
 
-interface AppProps {}
+const defaultTimeLimit = 60
+const timeLimitInterval = 15
+const maxTimeLimit = 180
 
-const defaultTimeLimit = 60;
-const timeLimitInterval = 15;
-const maxTimeLimit = 180;
-
-function App({}: AppProps) {
-  const [timeLimit, setTimeLimit] = useState(defaultTimeLimit);
-  const [count, setCount] = useState(timeLimit);
+function App () {
+  const [timeLimit, setTimeLimit] = useState(defaultTimeLimit)
+  const [count, setCount] = useState(timeLimit)
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (count <= 0) return;
-      setCount(count - 1);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
+      if (count <= 0) return
+      setCount(count - 1)
+    }, 1000)
+    return () => clearTimeout(timer)
+  }, [count, setCount])
 
-  const [styles, api] = useSpring(() => ({}));
+  const [styles, api] = useSpring(() => ({}))
 
   const onClick = () => {
     if (count !== 0) {
       api.start({
         from: { backgroundColor: '#FEF3C7' },
-        to: { backgroundColor: 'white' },
-      });
+        to: { backgroundColor: 'white' }
+      })
     }
-    setCount(timeLimit);
-  };
+    setCount(timeLimit)
+  }
 
   const addTimeLimit = () => {
-    setTimeLimit(Math.min(timeLimit + timeLimitInterval, maxTimeLimit));
-  };
+    setTimeLimit(Math.min(timeLimit + timeLimitInterval, maxTimeLimit))
+  }
 
   const reduceTimeLimit = () => {
-    setTimeLimit(Math.max(timeLimit - timeLimitInterval, 15));
-  };
+    setTimeLimit(Math.max(timeLimit - timeLimitInterval, 15))
+  }
 
   return (
     <div
@@ -49,7 +47,7 @@ function App({}: AppProps) {
         'flex-col',
         'justify-center',
         'items-center',
-        'h-full',
+        'h-full'
       ])}
     >
       <TopBar
@@ -70,7 +68,7 @@ function App({}: AppProps) {
             'justify-center',
             'items-center',
             'h-full',
-            ['bg-red-600', count === 0],
+            ['bg-red-600', count === 0]
           ])}
         >
           <div id="count" className={classnames([['text-white', count === 0]])}>
@@ -83,18 +81,18 @@ function App({}: AppProps) {
           <img
             src={GithubImgSrc}
             alt="github"
-            className={classnames(['w-10', 'text-gray-400', 'opacity-10	'])}
+            className={classnames(['w-10', 'text-gray-400', 'opacity-10'])}
           />
         </a>
       </div>
     </div>
-  );
+  )
 }
 
 const TopBar = ({
   timeLimit,
   reduceTimeLimit,
-  addTimeLimit,
+  addTimeLimit
 }: {
   timeLimit: number;
   reduceTimeLimit: () => void;
@@ -107,7 +105,7 @@ const TopBar = ({
       'bg-white',
       'flex',
       'justify-between',
-      'items-center',
+      'items-center'
     ])}
   >
     <MinusIcon
@@ -120,7 +118,7 @@ const TopBar = ({
     </div>
     <PlusIcon className={classnames(['w-4', 'm-4'])} onClick={addTimeLimit} />
   </div>
-);
+)
 
 const classnames = (pairs: (string | [string, boolean?])[]) =>
   pairs
@@ -128,10 +126,10 @@ const classnames = (pairs: (string | [string, boolean?])[]) =>
       typeof stringOrPair === 'string'
         ? stringOrPair
         : stringOrPair[1]
-        ? stringOrPair[0]
-        : '',
+          ? stringOrPair[0]
+          : ''
     )
     .filter(Boolean)
-    .join(' ');
+    .join(' ')
 
-export default App;
+export default App

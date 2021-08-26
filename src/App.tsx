@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ClockIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import { useTransition, animated, config, useSpring } from 'react-spring';
+import GithubImgSrc from '../public/GitHub-Mark-64px.png';
 
 interface AppProps {}
 
@@ -51,35 +52,13 @@ function App({}: AppProps) {
         'h-full',
       ])}
     >
-      <div
-        className={classnames([
-          'h-14',
-          'w-full',
-          'bg-white',
-          'flex',
-          'justify-between',
-          'items-center',
-        ])}
-      >
-        <MinusIcon
-          className={classnames(['w-4', 'm-4'])}
-          onClick={reduceTimeLimit}
-        />
-        <div className={classnames(['flex', 'justify-center', 'items-center'])}>
-          <ClockIcon className={classnames(['w-5', 'm-1', 'text-gray-400'])} />
-          <span className={classnames(['text-lg'])}>{timeLimit}</span>
-        </div>
-        <PlusIcon
-          className={classnames(['w-4', 'm-4'])}
-          onClick={addTimeLimit}
-        />
-      </div>
-
+      <TopBar
+        timeLimit={timeLimit}
+        reduceTimeLimit={reduceTimeLimit}
+        addTimeLimit={addTimeLimit}
+      />
       <animated.div
-          className={classnames([
-            'w-full',
-            'h-full',
-          ])}
+        className={classnames(['w-full', 'h-full'])}
         onClick={onClick}
         style={styles}
       >
@@ -99,9 +78,49 @@ function App({}: AppProps) {
           </div>
         </div>
       </animated.div>
+      <div className={classnames(['absolute', 'left-3', 'bottom-3'])}>
+        <a href="https://github.com/chauchakching/rummikub-timer">
+          <img
+            src={GithubImgSrc}
+            alt="github"
+            className={classnames(['w-10', 'text-gray-400', 'opacity-10	'])}
+          />
+        </a>
+      </div>
     </div>
   );
 }
+
+const TopBar = ({
+  timeLimit,
+  reduceTimeLimit,
+  addTimeLimit,
+}: {
+  timeLimit: number;
+  reduceTimeLimit: () => void;
+  addTimeLimit: () => void;
+}) => (
+  <div
+    className={classnames([
+      'h-14',
+      'w-full',
+      'bg-white',
+      'flex',
+      'justify-between',
+      'items-center',
+    ])}
+  >
+    <MinusIcon
+      className={classnames(['w-4', 'm-4'])}
+      onClick={reduceTimeLimit}
+    />
+    <div className={classnames(['flex', 'justify-center', 'items-center'])}>
+      <ClockIcon className={classnames(['w-5', 'm-1', 'text-gray-400'])} />
+      <span className={classnames(['text-lg'])}>{timeLimit}</span>
+    </div>
+    <PlusIcon className={classnames(['w-4', 'm-4'])} onClick={addTimeLimit} />
+  </div>
+);
 
 const classnames = (pairs: (string | [string, boolean?])[]) =>
   pairs

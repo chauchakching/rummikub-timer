@@ -14,7 +14,7 @@ function App () {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCount(k => Math.max(0, k - 1))
+      setCount((k) => Math.max(0, k - 1))
     }, 1000)
     return () => clearTimeout(timer)
   }, [resetToggle])
@@ -29,7 +29,7 @@ function App () {
       })
     }
     setCount(timeLimit)
-    setResetToggle(x => !x)
+    setResetToggle((x) => !x)
   }
 
   const addTimeLimit = () => {
@@ -109,15 +109,21 @@ const TopBar = ({
       'items-center'
     ])}
   >
-    <MinusIcon
-      className={classnames(['w-4', 'm-4'])}
-      onClick={reduceTimeLimit}
-    />
+    <button>
+      <MinusIcon
+        className={classnames(['w-4', 'm-4'])}
+        onClick={reduceTimeLimit}
+      />
+    </button>
+
     <div className={classnames(['flex', 'justify-center', 'items-center'])}>
       <ClockIcon className={classnames(['w-5', 'm-1', 'text-gray-400'])} />
       <span className={classnames(['text-lg'])}>{timeLimit}</span>
     </div>
-    <PlusIcon className={classnames(['w-4', 'm-4'])} onClick={addTimeLimit} />
+
+    <button>
+      <PlusIcon className={classnames(['w-4', 'm-4'])} onClick={addTimeLimit} />
+    </button>
   </div>
 )
 

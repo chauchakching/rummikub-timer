@@ -85,18 +85,18 @@ const TopBar = ({
     "justify-between",
     "items-center"
   ])
-}, /* @__PURE__ */ React.createElement(MinusIcon, {
+}, /* @__PURE__ */ React.createElement("button", null, /* @__PURE__ */ React.createElement(MinusIcon, {
   className: classnames(["w-4", "m-4"]),
   onClick: reduceTimeLimit
-}), /* @__PURE__ */ React.createElement("div", {
+})), /* @__PURE__ */ React.createElement("div", {
   className: classnames(["flex", "justify-center", "items-center"])
 }, /* @__PURE__ */ React.createElement(ClockIcon, {
   className: classnames(["w-5", "m-1", "text-gray-400"])
 }), /* @__PURE__ */ React.createElement("span", {
   className: classnames(["text-lg"])
-}, timeLimit)), /* @__PURE__ */ React.createElement(PlusIcon, {
+}, timeLimit)), /* @__PURE__ */ React.createElement("button", null, /* @__PURE__ */ React.createElement(PlusIcon, {
   className: classnames(["w-4", "m-4"]),
   onClick: addTimeLimit
-}));
+})));
 const classnames = (pairs) => pairs.map((stringOrPair) => typeof stringOrPair === "string" ? stringOrPair : stringOrPair[1] ? stringOrPair[0] : "").filter(Boolean).join(" ");
 export default App;

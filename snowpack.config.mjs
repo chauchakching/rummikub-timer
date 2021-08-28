@@ -2,7 +2,7 @@
 export default {
   mount: {
     public: { url: '/', static: true },
-    src: { url: '/dist' },
+    src: { url: '/dist' }
   },
   plugins: [
     '@snowpack/plugin-react-refresh',
@@ -11,10 +11,10 @@ export default {
       '@snowpack/plugin-typescript',
       {
         /* Yarn PnP workaround: see https://www.npmjs.com/package/@snowpack/plugin-typescript */
-        ...(process.versions.pnp ? { tsc: 'yarn pnpify tsc' } : {}),
-      },
+        ...(process.versions.pnp ? { tsc: 'yarn pnpify tsc' } : {})
+      }
     ],
-    '@snowpack/plugin-postcss',
+    '@snowpack/plugin-postcss'
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
@@ -29,8 +29,9 @@ export default {
   },
   devOptions: {
     tailwindConfig: './tailwind.config.js',
+    port: 8000
   },
   buildOptions: {
     /* ... */
-  },
-};
+  }
+}

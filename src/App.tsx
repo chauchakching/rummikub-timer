@@ -10,14 +10,14 @@ const maxTimeLimit = 180
 function App () {
   const [timeLimit, setTimeLimit] = useState(defaultTimeLimit)
   const [count, setCount] = useState(timeLimit)
+  const [resetToggle, setResetToggle] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (count <= 0) return
-      setCount(count - 1)
+    const timer = setInterval(() => {
+      setCount(k => Math.max(0, k - 1))
     }, 1000)
     return () => clearTimeout(timer)
-  }, [count, setCount])
+  }, [resetToggle])
 
   const [styles, api] = useSpring(() => ({}))
 
@@ -29,6 +29,7 @@ function App () {
       })
     }
     setCount(timeLimit)
+    setResetToggle(x => !x)
   }
 
   const addTimeLimit = () => {

@@ -119,7 +119,7 @@ const TopBar = ({
     <div
       className={classnames(['flex', 'justify-center', 'items-center', 'm-12'])}
     >
-      <ClockIcon className={classnames(['w-5', 'm-1', 'text-gray-400'])} />
+      <ClockIcon className={classnames(['w-5', 'm-1', 'text-yellow-400'])} />
       <span className={classnames(['text-lg'])}>{timeLimit}</span>
     </div>
 

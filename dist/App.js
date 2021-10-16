@@ -91,7 +91,7 @@ const TopBar = ({
 })), /* @__PURE__ */ React.createElement("div", {
   className: classnames(["flex", "justify-center", "items-center", "m-12"])
 }, /* @__PURE__ */ React.createElement(ClockIcon, {
-  className: classnames(["w-5", "m-1", "text-gray-400"])
+  className: classnames(["w-5", "m-1", "text-yellow-400"])
 }), /* @__PURE__ */ React.createElement("span", {
   className: classnames(["text-lg"])
 }, timeLimit)), /* @__PURE__ */ React.createElement("button", null, /* @__PURE__ */ React.createElement(PlusIcon, {

@@ -82,14 +82,14 @@ const TopBar = ({
     "w-full",
     "bg-white",
     "flex",
-    "justify-between",
+    "justify-center",
     "items-center"
   ])
 }, /* @__PURE__ */ React.createElement("button", null, /* @__PURE__ */ React.createElement(MinusIcon, {
   className: classnames(["w-4", "m-4"]),
   onClick: reduceTimeLimit
 })), /* @__PURE__ */ React.createElement("div", {
-  className: classnames(["flex", "justify-center", "items-center"])
+  className: classnames(["flex", "justify-center", "items-center", "m-12"])
 }, /* @__PURE__ */ React.createElement(ClockIcon, {
   className: classnames(["w-5", "m-1", "text-gray-400"])
 }), /* @__PURE__ */ React.createElement("span", {
